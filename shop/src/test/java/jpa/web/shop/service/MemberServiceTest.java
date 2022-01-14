@@ -3,7 +3,6 @@ package jpa.web.shop.service;
 
 import jpa.web.shop.domain.Member;
 import jpa.web.shop.repository.MemberRepository;
-import jpa.web.shop.service.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class MemberServiceTest {
 
     @Test
     @Rollback(false)
-    public void 회원가입() throws Exception{
+    public void 회원가입() throws Exception {
         // given
         Member member = new Member();
         member.setName("kim");
@@ -45,7 +44,7 @@ public class MemberServiceTest {
     }
 
     @Test
-    public void 중복_회원_예외() throws Exception{
+    public void 중복_회원_예외() throws Exception {
         // given
         Member member1 = new Member();
         member1.setName("kim1");
