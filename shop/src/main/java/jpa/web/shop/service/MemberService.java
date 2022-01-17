@@ -3,7 +3,6 @@ package jpa.web.shop.service;
 import java.util.*;
 import jpa.web.shop.domain.Member;
 import jpa.web.shop.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,7 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        List<Member> findMemebrs = memberRepository.findByName(member.getName());
+        List<Member> findMemebrs = memberRepository.findByName(member.getUsername());
         if(!findMemebrs.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }

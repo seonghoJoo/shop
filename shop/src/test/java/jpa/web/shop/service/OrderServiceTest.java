@@ -6,7 +6,6 @@ import jpa.web.shop.domain.Order;
 import jpa.web.shop.domain.OrderStatus;
 import jpa.web.shop.domain.item.Book;
 import jpa.web.shop.domain.item.Item;
-import jpa.web.shop.exception.NotEnoughStockException;
 import jpa.web.shop.repository.OrderRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -92,7 +91,7 @@ public class OrderServiceTest {
 
     private Member createMember() {
         Member member = new Member();
-        member.setName("회원1");
+        member.setUsername("회원1");
         member.setAddress(new Address("서울", "경기", "123-123"));
         em.persist(member);
         return member;
