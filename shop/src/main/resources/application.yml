@@ -9,11 +9,16 @@ spring:
   jpa:
     hibernate:
       # app 실행시점에 테이블 모두 지우고 다시 생성
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         #show_sql : true
         format_sql: true
+
+  # 타임리프설정
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
 #포트번호
 server:
