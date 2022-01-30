@@ -2,11 +2,11 @@ package jpa.web.shop.api;
 
 import jpa.web.shop.domain.Member;
 import jpa.web.shop.service.MemberService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,6 +29,30 @@ public class MemberApiController {
         member.setUsername(request.getName());
         Long id = memberService.join(member);
         return new CreateMemberResponse(id);
+    }
+
+    @PutMapping("/api/v2/members/{id}")
+    public UpdatgeMemberResponse updateMemberV2(
+            @PathVariable("id") Long id,
+            @RequestBody @Valid UpdateMemberRequest request
+            ){
+        Member member = memberService.update(id, request.getName());
+        return new UpdatgeMemberResponse(id, request.getName());
+    }
+
+    @Data
+    @Getter
+    static class UpdateMemberRequest{
+        private String name;
+
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class UpdatgeMemberResponse{
+        private Long id;
+        private String name;
+
     }
 
     @Data
