@@ -36,13 +36,29 @@ public class MemberApiController {
         List<MemberDto> collect = findMembers.stream()
                 .map(m->new MemberDto(m.getUsername()))
                 .collect(Collectors.toList());
-        return new Result(collect);
+        return new Result(collect, collect.size());
     }
 
     @Data
     @AllArgsConstructor
     static class Result<T>{
         private T data;
+        private int count;
+        
+        //  다음과 같이 값을 반환함
+        // {
+        //    "data": [
+        //        {
+        //            "name": "joo"
+        //        },
+        //        {
+        //            "name": "user"
+        //        },
+        //        {
+        //            "name": "user2"
+        //        }
+        //    ]
+        //}
     }
 
     @Data
