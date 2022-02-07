@@ -1,5 +1,6 @@
 package jpa.web.shop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,7 @@ public class Member {
     private Address address;
 
     //order 테이블에 있는 member 필드에 의해 맵핑된거라고 알려줌
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
