@@ -2,10 +2,12 @@ package jpa.web.shop.repository;
 
 import jpa.web.shop.domain.Member;
 import jpa.web.shop.domain.Order;
+import jpa.web.shop.domain.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import javax.persistence.EntityManager;
@@ -64,4 +66,18 @@ public class OrderRepository {
     }
 
 
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                       " join fetch o.delivery d", Order.class).getResultList();
+    }
+
+    public List<SimpleOrderQueryDto> findOrderDtos() {
+        return em.createQuery("select " +
+                "new jpa.web.shop.repository.SimpleOrderQueryDto(o.id, m.username, o.orderDate, o.status, d.address) " +
+                " from Order o" +
+                " join o.member m" +
+                " join o.delivery d", SimpleOrderQueryDto.class).getResultList();
+    }
 }
