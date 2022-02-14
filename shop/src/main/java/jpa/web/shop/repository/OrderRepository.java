@@ -73,11 +73,33 @@ public class OrderRepository {
                        " join fetch o.delivery d", Order.class).getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
     public List<SimpleOrderQueryDto> findOrderDtos() {
         return em.createQuery("select " +
                 "new jpa.web.shop.repository.SimpleOrderQueryDto(o.id, m.username, o.orderDate, o.status, d.address) " +
                 " from Order o" +
                 " join o.member m" +
                 " join o.delivery d", SimpleOrderQueryDto.class).getResultList();
+    }
+
+    public List<Order> findAllWithItem() {
+        // distinct 엔티티가 중복일때 그것을 없애줌
+        // orderItems는 1 대 다 fetch join 이기때문에 페이징처리하면 안된다.
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i" , Order.class
+        ).getResultList();
     }
 }
