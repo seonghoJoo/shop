@@ -5,7 +5,7 @@ import jpa.web.shop.domain.Order;
 import jpa.web.shop.domain.OrderStatus;
 import jpa.web.shop.repository.OrderRepository;
 import jpa.web.shop.repository.OrderSearch;
-import jpa.web.shop.repository.SimpleOrderQueryDto;
+import jpa.web.shop.repository.order.simplequery.SimpleOrderQueryDto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

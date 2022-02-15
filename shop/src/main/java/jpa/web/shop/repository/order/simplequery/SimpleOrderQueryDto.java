@@ -1,4 +1,4 @@
-package jpa.web.shop.repository;
+package jpa.web.shop.repository.order.simplequery;
 
 import jpa.web.shop.domain.Address;
 import jpa.web.shop.domain.Order;
