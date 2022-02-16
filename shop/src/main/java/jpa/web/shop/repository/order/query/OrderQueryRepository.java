@@ -60,7 +60,13 @@ public class OrderQueryRepository {
         return result;
     }
 
-    public List<OrderQueryDto> findAllByDto_flat() {
-        return null;
+    public List<OrderFlatDto> findAllByDto_flat() {
+        return em.createQuery("select new jpa.web.shop.repository.order.query.OrderFlatDto(o.id, m.username, o.orderDate, o.status, d.address, i.name, oi.orderPrice, oi.count)" +
+                " from Order o" +
+                " join o.member m" +
+                " join o.delivery d" +
+                " join o.orderItems oi" +
+                " join oi.item i", OrderFlatDto.class)
+                .getResultList();
     }
 }

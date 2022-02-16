@@ -7,6 +7,7 @@ import jpa.web.shop.domain.OrderItem;
 import jpa.web.shop.domain.OrderStatus;
 import jpa.web.shop.repository.OrderRepository;
 import jpa.web.shop.repository.OrderSearch;
+import jpa.web.shop.repository.order.query.OrderFlatDto;
 import jpa.web.shop.repository.order.query.OrderQueryDto;
 import jpa.web.shop.repository.order.query.OrderQueryRepository;
 import lombok.Data;
@@ -74,8 +75,11 @@ public class OrderApiController {
     }
 
     @GetMapping("/api/v6/orders")
-    public List<OrderQueryDto> orderV6(){
-        return orderQueryRepository.findAllByDto_flat();
+    public List<OrderFlatDto> orderV6(){
+        // 중복을 발라내 보자..
+        List<OrderFlatDto> flats = orderQueryRepository.findAllByDto_flat();
+
+        return flats;
     }
 
     @Data
