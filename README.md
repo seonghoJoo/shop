@@ -16,3 +16,5 @@ Open EntityManager In View: JPA
 - ADMIN 페이지 OSIV : ON
 
 ## 스프링 DATA JPA
+스프링 데이터 JPA는 ```JpaRepository```라는 인터페이스를 제공
+개발자는 인터페이스만 만들면 됨. 구현체는 스프링 데이터 JPA가 애플리케이션 실행시점에 주입해줌.
