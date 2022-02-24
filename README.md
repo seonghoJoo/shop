@@ -14,3 +14,5 @@ Open EntityManager In View: JPA
 팁 : 
 - 실시간 대용량 처리 OSIV : OFF
 - ADMIN 페이지 OSIV : ON
+
+## 스프링 DATA JPA
