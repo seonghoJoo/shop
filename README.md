@@ -20,3 +20,4 @@ Open EntityManager In View: JPA
 개발자는 인터페이스만 만들면 됨. 구현체는 스프링 데이터 JPA가 애플리케이션 실행시점에 주입해줌.
 
 ## QueryDSL
+Q클래스명.java 
