@@ -21,3 +21,17 @@ Open EntityManager In View: JPA
 
 ## QueryDSL
 Q클래스명.java 
+```
+public List<Order> findAll(OrderSearch orderSearch){
+        JPAQueryFactory query = new JPAQueryFactory(em);
+        QOrder order = QOrder.order;
+        QMember member = QMember.member;
+
+        return query.select(order)
+                .from(order)
+                .join(order.member, member)
+                .where(statusEq(orderSearch.getOrderStatus()), nameLike(orderSearch.getMemberName()))
+                .limit(1000)
+                .fetch();
+}
+```
